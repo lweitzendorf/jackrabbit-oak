@@ -824,6 +824,7 @@ public class DefaultSegmentWriter implements SegmentWriter {
             if (state instanceof SegmentNodeState && stableIdBytes == null) {
                 stableIdBytes = ((SegmentNodeState) state).getStableIdBytes();
             }
+
             RecordId recordId = writeNodeUncached(state, stableIdBytes);
 
             if (stableIdBytes != null) {

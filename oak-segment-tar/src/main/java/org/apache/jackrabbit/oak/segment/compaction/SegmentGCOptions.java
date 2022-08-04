@@ -53,9 +53,14 @@ public class SegmentGCOptions {
         CLASSIC_COMPACTOR("classic"),
 
         /**
-         * Checkpoints aware compaction implementation
+         * Checkpoints-aware compaction implementation
          */
-        CHECKPOINT_COMPACTOR("diff");
+        CHECKPOINT_COMPACTOR("diff"),
+
+        /**
+         * Multithreaded compaction implementation
+         */
+        PARALLEL_COMPACTOR("parallel");
 
         private final String description;
 
@@ -69,8 +74,10 @@ public class SegmentGCOptions {
                 return CLASSIC_COMPACTOR;
             case "diff":
                 return CHECKPOINT_COMPACTOR;
+            case "parallel":
+                return PARALLEL_COMPACTOR;
             default:
-                throw new IllegalArgumentException("Unrecongnized compactor type " + description);
+                throw new IllegalArgumentException("Unrecognized compactor type " + description);
             }
         }
 
@@ -149,7 +156,7 @@ public class SegmentGCOptions {
      */
     private long gcLogInterval = -1;
 
-    private CompactorType compactorType = CompactorType.CHECKPOINT_COMPACTOR;
+    private CompactorType compactorType = CompactorType.PARALLEL_COMPACTOR;
 
     public SegmentGCOptions(boolean paused, int retryCount, int forceTimeout) {
         this.paused = paused;

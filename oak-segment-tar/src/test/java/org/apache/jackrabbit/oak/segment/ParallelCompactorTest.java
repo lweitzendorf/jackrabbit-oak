@@ -8,14 +8,14 @@ import org.jetbrains.annotations.NotNull;
 
 import static org.apache.jackrabbit.oak.segment.DefaultSegmentWriterBuilder.defaultSegmentWriterBuilder;
 
-public class CheckpointCompactorTest extends CompactorTest {
+public class ParallelCompactorTest extends CompactorTest {
     @Override
-    protected CheckpointCompactor createCompactor(@NotNull FileStore fileStore, @NotNull GCGeneration generation) {
+    protected ParallelCompactor createCompactor(@NotNull FileStore fileStore, @NotNull GCGeneration generation) {
         SegmentWriter writer = defaultSegmentWriterBuilder("c")
                 .withGeneration(generation)
                 .build(fileStore);
 
-        return new CheckpointCompactor(
+        return new ParallelCompactor(
                 GCMonitor.EMPTY,
                 fileStore.getReader(),
                 writer,

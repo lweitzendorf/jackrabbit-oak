@@ -78,7 +78,7 @@ public class Compact {
 
         private int segmentCacheSize = DEFAULT_SEGMENT_CACHE_MB;
 
-        private CompactorType compactorType = CompactorType.CHECKPOINT_COMPACTOR;
+        private CompactorType compactorType = CompactorType.PARALLEL_COMPACTOR;
 
         private Builder() {
             // Prevent external instantiation.
